@@ -22,6 +22,8 @@ using osu.Game.Overlays.Settings;
 using osu.Game.Beatmaps.Legacy;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics.Rendering;
+using osu.Game.Rulesets.Diva.Scoring;
+using osu.Game.Rulesets.Scoring;
 
 namespace osu.Game.Rulesets.Diva
 {
@@ -135,6 +137,13 @@ namespace osu.Game.Rulesets.Diva
         }
 
         public override string ShortName => "diva";
+
+        public override string RulesetAPIVersionSupported => CURRENT_RULESET_API_VERSION;
+
+        public override string PlayingVerb => "Playing osu!DIVA";
+
+        public override ScoreMultiplierCalculator CreateScoreMultiplierCalculator(ScoreMultiplierContext context) =>
+            new DivaScoreMultiplierCalculator(context);
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
         {
